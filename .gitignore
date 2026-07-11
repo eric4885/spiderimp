@@ -1,0 +1,13 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.tmp
+.idea/
+.vscode/
+*.swp
+
+# Local / secrets (keep out of Git)
+.env
+.env.*
+*.log

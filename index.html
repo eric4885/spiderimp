@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Spider Solitaire Free Online – Play Classic Card Game | SpiderImp</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Play free Spider Solitaire online at SpiderImp—no download. 1, 2 or 4 suits, Daily Challenge, undo, hints, and local best scores. Instant play for USA, UK, Canada, Australia &amp; worldwide.">
+		<meta name="keywords" content="spider solitaire, free spider solitaire online, spider solitaire daily challenge, play spider solitaire free, spider solitaire no download, spider solitaire 1 suit, spider solitaire 2 suits, spider solitaire 4 suits, classic solitaire card game, online card games, spiderimp">
+		<meta name="author" content="SpiderImp">
+		<meta name="theme-color" content="#1a5c3a">
+		<meta name="geo.region" content="US">
+		<meta name="geo.placename" content="United States">
+		<meta name="language" content="English">
+
+		<meta property="og:type" content="website">
+		<meta property="og:site_name" content="SpiderImp">
+		<meta property="og:locale" content="en_US">
+		<meta property="og:url" content="https://spiderimp.com/">
+		<meta property="og:title" content="Spider Solitaire Free Online – Play Classic Card Game | SpiderImp">
+		<meta property="og:description" content="Free Spider Solitaire in your browser. Daily Challenge, 1–4 suits, undo &amp; hints. No download.">
+		<meta property="og:image" content="https://spiderimp.com/images/homescreen1.jpg">
+
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Free Spider Solitaire Online | SpiderImp">
+		<meta name="twitter:description" content="Play classic Spider Solitaire free – Daily Challenge, no download. 1, 2 or 4 suits.">
+		<meta name="twitter:image" content="https://spiderimp.com/images/homescreen1.jpg">
+
+		<link rel="canonical" href="https://spiderimp.com/">
+		<link rel="icon" type="image/svg+xml" href="favicon.svg">
+		<link rel="apple-touch-icon" href="favicon.svg">
+
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "WebApplication",
+			"name": "SpiderImp – Free Spider Solitaire",
+			"url": "https://spiderimp.com/",
+			"applicationCategory": "GameApplication",
+			"operatingSystem": "Any",
+			"browserRequirements": "Requires JavaScript",
+			"offers": {
+				"@type": "Offer",
+				"price": "0",
+				"priceCurrency": "USD"
+			},
+			"description": "Free online Spider Solitaire with 1, 2, or 4 suits, Daily Challenge, undo, hints, and local best scores. No download required."
+		}
+		</script>
+
+		<link rel="stylesheet" type="text/css" href="css/reset.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/cards.css">
+	</head>
+	<body class="menu-mode">
+		<form action="index.html" name="startGame" id="startGame" class="start-form start-form-visible">
+			<div class="start-form-brand">SpiderImp</div>
+			<div class="title">Choose a Difficulty Level</div>
+			<label class="game-option">
+				<input type="radio" name="radioBtn" value="1" checked>
+				<span class="suit one">One suit</span>
+			</label>
+			<label class="game-option">
+				<input type="radio" name="radioBtn" value="2">
+				<span class="suit two">Two suits</span>
+			</label>
+			<label class="game-option">
+				<input type="radio" name="radioBtn" value="4">
+				<span class="suit four">Four suits</span>
+			</label>
+			<div class="start-form-actions start-form-actions-primary">
+				<button type="button" id="play-btn" class="btn-play">Play</button>
+				<button type="button" id="daily-btn" class="btn-daily">Daily Challenge</button>
+			</div>
+			<div class="start-form-actions start-form-actions-secondary">
+				<button type="button" id="high-score-btn" class="btn-scores">Best Scores</button>
+				<button type="button" id="stats-btn" class="btn-scores btn-stats">Stats</button>
+				<button type="button" id="howto-btn" class="btn-scores btn-howto">How to Play</button>
+				<button type="button" id="resume-btn" class="btn-scores btn-resume" style="display:none;">Resume Game</button>
+			</div>
+			<p id="daily-status" class="daily-status" aria-live="polite"></p>
+			<p class="start-form-scroll-hint">Scroll down for rules &amp; tips</p>
+		</form>
+
+		<section id="seo-content" class="seo-content" aria-label="About Spider Solitaire">
+			<h1>Free Spider Solitaire Online – Play Instantly at SpiderImp</h1>
+			<p>
+				Play <strong>free Spider Solitaire online</strong> in your browser at spiderimp.com—no download, no signup, and no app install. Choose 1-suit, 2-suit, or 4-suit difficulty, then deal, build, and clear eight same-suit King-to-Ace runs. Built for players in the <strong>United States, United Kingdom, Canada, Australia</strong>, and worldwide.
+			</p>
+
+			<h2 id="rules-objective">Objective</h2>
+			<p>
+				Clear the tableau by building eight same-suit sequences from <strong>King down to Ace</strong>. Each completed run moves to the Completed area. Finish all eight runs to win.
+			</p>
+
+			<h2 id="rules-setup">Setup</h2>
+			<p>
+				Spider uses two decks (104 cards) dealt into <strong>ten columns</strong>. The Deal pile sits at the <strong>top-left</strong>; completed runs collect at the <strong>top</strong> next to it. Choose difficulty before you play: 1 suit, 2 suits, or 4 suits.
+			</p>
+
+			<h2 id="rules-moves">Valid moves</h2>
+			<ul>
+				<li>Place a card on the next-higher rank (suit does not matter for a single card).</li>
+				<li>Only a <strong>same-suit</strong> descending stack moves together as a group.</li>
+				<li>An empty column accepts any card or valid same-suit run.</li>
+			</ul>
+
+			<h2 id="rules-deal">Dealing from the stock</h2>
+			<p>
+				When every column has at least one card, click the <strong>Deal</strong> pile (top-left) to deal one card onto each column. You cannot deal while any column is empty.
+			</p>
+
+			<h2 id="rules-scoring">Scoring on SpiderImp</h2>
+			<p>
+				We track <strong>moves</strong> and <strong>time</strong>. Fewer moves is better on the Best Scores board. Statistics (games played, win rate, averages) are stored separately for each difficulty on your device. Wins can be copied with <strong>Copy Score</strong> to share.
+			</p>
+
+			<h2 id="rules-daily">Daily Challenge</h2>
+			<p>
+				Every calendar day, SpiderImp deals the <strong>same layout</strong> for each difficulty (1, 2, or 4 suits). Play from the menu with <strong>Daily Challenge</strong>, then try to beat your personal best for that day. Restart keeps today’s deal; tomorrow brings a new one. Great for comparing progress with friends using the same puzzle.
+			</p>
+
+			<h2 id="rules-difficulty">Difficulty</h2>
+			<p>
+				<strong>1 suit</strong> is easiest for learning. <strong>2 suits</strong> fits daily play.
+				<strong>4 suits</strong> is the classic hard challenge with a full two-deck mix.
+			</p>
+
+			<p class="seo-shortcuts">
+				Shortcuts: <strong>Z</strong> Undo · <strong>H</strong> Hint · <strong>D</strong> / Space Deal · <strong>P</strong> Pause · <strong>Esc</strong> close panels
+			</p>
+			<ul class="seo-features">
+				<li>No download—works in Chrome, Edge, Firefox, and Safari</li>
+				<li>Daily Challenge with the same deal for everyone each day</li>
+				<li>Undo, Hint, Pause, Restart, and volume control</li>
+				<li>Click-to-move and drag for desktop and touch</li>
+				<li>Resume unfinished games after refresh</li>
+			</ul>
+			<p>
+				<a class="seo-back" href="#startGame">↑ Back to game</a>
+				· Need more detail? Open <strong>How to Play</strong> or in-game <strong>FAQ</strong>.
+			</p>
+		</section>
+
+		<div id="scoreBoard" class="score-board">
+			<h2>Best Scores</h2>
+			<p class="score-board-note">Fewer moves is better</p>
+			<div class="score-tabs" role="tablist">
+				<button type="button" class="score-tab active" data-mode="1" role="tab">1 Suit</button>
+				<button type="button" class="score-tab" data-mode="2" role="tab">2 Suits</button>
+				<button type="button" class="score-tab" data-mode="4" role="tab">4 Suits</button>
+			</div>
+			<div class="score-board-header">
+				<span>Rank</span>
+				<span>Moves</span>
+				<span>Time</span>
+			</div>
+			<ol id="high-scores"></ol>
+			<div class="faq-close" title="Close" role="button" aria-label="Close" tabindex="0"></div>
+		</div>
+		<div id="scoreBoard-shadow" class="modal-shadow"></div>
+
+		<div id="statsBoard" class="score-board stats-board">
+			<h2>Statistics</h2>
+			<div class="score-tabs" role="tablist">
+				<button type="button" class="stats-tab active" data-mode="1" role="tab">1 Suit</button>
+				<button type="button" class="stats-tab" data-mode="2" role="tab">2 Suits</button>
+				<button type="button" class="stats-tab" data-mode="4" role="tab">4 Suits</button>
+			</div>
+			<div id="stats-body" class="stats-body"></div>
+			<div class="faq-close" title="Close" role="button" aria-label="Close" tabindex="0"></div>
+		</div>
+		<div id="statsBoard-shadow" class="modal-shadow"></div>
+
+		<div id="app-modal" class="app-modal" style="display:none;" role="dialog" aria-modal="true">
+			<div class="app-modal-box">
+				<p id="app-modal-text"></p>
+				<div class="app-modal-actions">
+					<button type="button" id="app-modal-cancel" class="victory-btn victory-btn-secondary">Cancel</button>
+					<button type="button" id="app-modal-ok" class="victory-btn">OK</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="stuck-modal" class="app-modal" style="display:none;" role="dialog" aria-modal="true">
+			<div class="app-modal-box">
+				<p class="stuck-title">No Moves Left</p>
+				<p id="stuck-modal-text">The deal pile is empty and there are no legal moves on the tableau.</p>
+				<div class="app-modal-actions">
+					<button type="button" id="stuck-undo" class="victory-btn">Undo</button>
+					<button type="button" id="stuck-restart" class="victory-btn">Restart</button>
+					<button type="button" id="stuck-dismiss" class="victory-btn victory-btn-secondary">Keep Looking</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="congratulation">
+			<canvas id="canvas"></canvas>
+			<div class="victory-panel">
+				<p class="victory-title">You Won!</p>
+				<p class="victory-stats" id="victory-stats"></p>
+				<p class="victory-daily-note" id="victory-daily-note" style="display:none;"></p>
+				<div class="victory-actions">
+					<button type="button" id="victory-again" class="victory-btn">Play Again</button>
+					<button type="button" id="victory-share" class="victory-btn">Copy Score</button>
+					<button type="button" id="victory-menu" class="victory-btn victory-btn-secondary">Main Menu</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="game-topbar" id="game-topbar" style="display:none;">
+			<div class="topbar-left">
+				<div class="score">
+					<label>Moves </label>
+					<label id="score">0</label>
+				</div>
+				<div class="timer">
+					<label>Time </label>
+					<label id="minutes">00</label>:<label id="seconds">00</label>
+				</div>
+				<button type="button" id="btn-pause" class="btn-pause" title="Pause game (P)">Pause</button>
+			</div>
+			<div class="game-hud">
+				<div class="mode-badge" id="mode-badge" style="display:none;">Mode: 1 Suit</div>
+				<div class="progress-badges" id="progress-badges" style="display:none;">
+					<span id="completed-count">Completed 0/8</span>
+					<span id="deals-left">Deals left 5</span>
+				</div>
+				<div class="sound-control" id="sound-control" title="Volume">
+					<button type="button" id="sound-toggle" class="sound-toggle" aria-label="Mute or unmute" title="Mute">🔊</button>
+					<input type="range" id="volume-slider" class="volume-slider" min="0" max="100" step="1" value="60" aria-label="Volume level">
+				</div>
+			</div>
+		</div>
+
+		<div id="pause-overlay" class="pause-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="pause-title">
+			<div class="pause-box">
+				<p id="pause-title" class="pause-title">Game Paused</p>
+				<p class="pause-hint">Press P or click Resume to continue</p>
+				<button type="button" id="btn-resume-pause" class="victory-btn">Resume</button>
+			</div>
+		</div>
+
+		<div class="game-stage" id="game-stage">
+			<div class="playfield" id="playfield">
+				<div class="offside">
+					<span class="stock-label">Deal <span id="deals-label-count">5</span></span>
+					<div class="foundation-area" aria-label="Completed runs">
+						<div class="foundation-slots" aria-hidden="true">
+							<span></span><span></span><span></span><span></span>
+							<span></span><span></span><span></span><span></span>
+						</div>
+						<ul class="dropout" id="dropout"></ul>
+					</div>
+					<ul class="source" id="source"></ul>
+				</div>
+				<div class="wrapper">
+					<div class="columns-row">
+						<ul class="column" data-height=""></ul>
+						<ul class="column" data-height=""></ul>
+						<ul class="column" data-height=""></ul>
+						<ul class="column" data-height=""></ul>
+						<ul class="column" data-height=""></ul>
+						<ul class="column" data-height=""></ul>
+						<ul class="column" data-height=""></ul>
+						<ul class="column" data-height=""></ul>
+						<ul class="column" data-height=""></ul>
+						<ul class="column" data-height=""></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="control-panel opaque">
+			<button class="btn-undo" type="button" disabled title="Undo last move">Undo</button>
+			<button class="btn-hint" type="button">Hint</button>
+			<button class="btn-new" type="button">Restart</button>
+			<button class="btn-menu" type="button">Menu</button>
+			<button class="btnFaq" type="button">FAQ</button>
+		</div>
+
+		<div id="faq" class="faq" itemscope itemtype="https://schema.org/FAQPage">
+			<h1>Spider Solitaire FAQ – How to Play Free Online</h1>
+			<p class="faq-intro">
+				SpiderImp is a free Spider Solitaire online game you can play in any modern browser—no download, no signup, and no app store required. Whether you are looking for a quick classic solitaire card game at home, a lunch-break puzzle at work, or a free spider solitaire no download option on a Chromebook, tablet, or phone, this guide covers rules, strategy, difficulty modes, and tips for players in the United States, United Kingdom, Canada, Australia, and worldwide.
+			</p>
+
+			<div class="faq-quickstart">
+				<h2>Quick start (30 seconds)</h2>
+				<ol>
+					<li>Pick 1 / 2 / 4 suits, then Play or Daily Challenge.</li>
+					<li>Move cards by drag, or click source then click target.</li>
+					<li>Same-suit descending stacks move as a group; empty columns take any card.</li>
+					<li>Deal only when every column has at least one card.</li>
+					<li>Keys: Z Undo, H Hint, D or Space Deal, P Pause, Esc close.</li>
+				</ol>
+			</div>
+
+			<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+				<h2 itemprop="name">What is Spider Solitaire?</h2>
+				<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+					<div itemprop="text">
+						<p>
+							Spider Solitaire is a classic two-deck patience (solitaire) card game. The goal is to build same-suit sequences from King down to Ace and clear the tableau. Unlike Klondike solitaire, Spider uses ten columns and focuses on suit runs. On SpiderImp you can play free Spider Solitaire online with three difficulty levels: 1 suit (easiest), 2 suits (medium), and 4 suits (hardest, full two-deck challenge).
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+				<h2 itemprop="name">How do you play Spider Solitaire free online?</h2>
+				<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+					<div itemprop="text">
+						<p>
+							To play Spider Solitaire free on spiderimp.com: choose 1-suit, 2-suit, or 4-suit mode, then drag cards between columns. You may place a card on the next-higher rank (suit does not matter for placement). Only same-suit descending stacks move together as a group. Empty columns accept any card or valid stack. When no column is empty, click the Deal pile (top-left) to deal one card onto each of the ten columns. Completed King-to-Ace same-suit runs move automatically to the Completed area (top, beside the deal pile). Clear all eight runs to win.
+						</p>
+						<ol>
+							<li>Empty column: place any top card or valid same-suit run.</li>
+							<li>Build down by rank (King → Queen → Jack … → Ace), any suit for single cards.</li>
+							<li>Move a consecutive same-suit descending stack as one unit.</li>
+							<li>Deal only when every column has at least one card.</li>
+							<li>Use Undo, Hint, and Restart from the control bar as needed.</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+
+			<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+				<h2 itemprop="name">What is the difference between 1 suit, 2 suits, and 4 suits Spider Solitaire?</h2>
+				<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+					<div itemprop="text">
+						<p>
+							<strong>Spider Solitaire 1 suit</strong> (often all spades) is the best beginner mode and the easiest free spider solitaire online experience—great for learning layout and empty-column strategy.
+							<strong>Spider Solitaire 2 suits</strong> (typically spades and hearts) adds more planning and is popular for casual daily play.
+							<strong>Spider Solitaire 4 suits</strong> uses a full two-deck mix and is the classic hard mode for players who want a tougher solitaire card game challenge and better practice for competitive scoring (fewest moves and time).
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+				<h2 itemprop="name">Do I need to download Spider Solitaire?</h2>
+				<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+					<div itemprop="text">
+						<p>
+							No. SpiderImp is spider solitaire no download—play instantly in Chrome, Edge, Firefox, or Safari on Windows PC, Mac, Chromebook, iPad, Android tablet, or phone. There is no Windows Store or App Store install required for the browser version. If you searched for “play spider solitaire free online without downloading,” this site is built for that.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+				<h2 itemprop="name">Can I play Spider Solitaire in the USA, UK, Canada, Australia, and other countries?</h2>
+				<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+					<div itemprop="text">
+						<p>
+							Yes. SpiderImp is available worldwide for English-speaking and international players. Many visitors search for free spider solitaire online in the United States (including New York, California, Texas, Florida), the United Kingdom (England, Scotland, Wales), Canada, Australia, New Zealand, Ireland, Singapore, India, and the Philippines. The game runs in the browser with no regional app lock—ideal for home, office, school breaks, or travel Wi‑Fi.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+				<h2 itemprop="name">Spider Solitaire strategy tips for fewer moves</h2>
+				<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+					<div itemprop="text">
+						<p>
+							To improve your spider solitaire high score: expose face-down cards early, protect empty columns for rearranging long runs, prefer building same-suit sequences before mixed-suit temporary builds, and avoid dealing from the stock until you have no useful moves. Use Hint when stuck, and Undo if a deal or move blocks a better line. Tracking moves and time on the Best Scores board helps you compare 1-suit vs 2-suit vs 4-suit progress.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+				<h2 itemprop="name">Is Spider Solitaire good for kids, seniors, and casual players?</h2>
+				<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+					<div itemprop="text">
+						<p>
+							Yes. One-suit Spider Solitaire is a friendly introduction for kids learning card ranks, for seniors who enjoy classic patience games, and for anyone who wants a calm brain teaser. Turn sound off with the mute button for quiet play at work or late at night. The large card layout and undo feature make it accessible for casual and family play.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+				<h2 itemprop="name">What is the Spider Solitaire Daily Challenge?</h2>
+				<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+					<div itemprop="text">
+						<p>
+							The Daily Challenge on SpiderImp is a shared puzzle for the current calendar day. For each difficulty (1, 2, or 4 suits), every player gets the same starting deal. Your best finish for that day (fewest moves, then fastest time) is saved on your device so you can retry and improve. Tomorrow’s daily uses a new deal.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+				<h2 itemprop="name">How is scoring calculated on SpiderImp?</h2>
+				<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+					<div itemprop="text">
+						<p>
+							SpiderImp ranks games by <strong>moves</strong> first (fewer is better), then by <strong>time</strong>. There is no subtractive point score like some desktop versions—clearing all eight King-to-Ace runs wins the hand. Best Scores and Statistics are stored locally in your browser for each difficulty, and Daily Challenge keeps a separate personal best per day and mode.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+				<h2 itemprop="name">Spider Solitaire vs Klondike and FreeCell</h2>
+				<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+					<div itemprop="text">
+						<p>
+							Klondike (the common “Windows Solitaire”) builds foundations by suit from Ace up and uses a single draw pile. FreeCell uses open cells as helpers. Spider Solitaire focuses on ten-column tableau building and same-suit King-to-Ace clears. If you like longer sessions and deeper planning than Klondike, free online Spider Solitaire is often the better fit.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+				<h2 itemprop="name">Keyboard, mobile, and accessibility notes</h2>
+				<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+					<div itemprop="text">
+						<p>
+							On desktop, drag cards with the mouse, or click a card then click a valid target column. Keyboard shortcuts: <strong>Z</strong> Undo, <strong>H</strong> Hint, <strong>D</strong> or <strong>Space</strong> Deal, <strong>P</strong> Pause, <strong>Esc</strong> close panels. On tablets and phones, tap to select then tap to move, or drag. Mute, Undo, Hint, Restart, Menu, and FAQ are in the on-screen controls. Moves, time, and progress appear in the top bar; the Deal pile is top-left and Completed runs collect beside it. Unfinished games can be resumed from the main menu. Best scores and statistics are stored locally in your browser by difficulty mode.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<p class="faq-footer-note">
+				Play free Spider Solitaire online at <strong>spiderimp.com</strong> — classic card game, no download, undo &amp; hints included.
+			</p>
+			<div class="faq-close" title="Close" role="button" aria-label="Close"></div>
+		</div>
+		<div class="faq-shadow"></div>
+
+		<footer class="site-footer">
+			<span class="footer-brand">SpiderImp</span>
+			<span class="footer-sep">·</span>
+			<a href="https://spiderimp.com">spiderimp.com</a>
+		</footer>
+
+		<ul class="drag-el" id="drag-el"></ul>
+
+		<script src="js/cardDeck.js"></script>
+		<script src="js/sound.js"></script>
+		<script src="js/cardAnimation.js"></script>
+		<script src="js/timeCounter.js"></script>
+		<script src="js/cardDealer.js"></script>
+		<script src="js/undo.js"></script>
+		<script src="js/dragEvent.js"></script>
+		<script src="js/victoryAnimation.js"></script>
+		<script src="js/extras.js"></script>
+		<script src="js/script.js"></script>
+	</body>
+</html>

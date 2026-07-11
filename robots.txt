@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Disallow: /screenshots/
+
+Sitemap: https://spiderimp.com/sitemap.xml
