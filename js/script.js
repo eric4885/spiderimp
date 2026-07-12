@@ -872,10 +872,7 @@ updateSoundButton();
 setMenuMode(true);
 
 document.getElementById('howto-btn').onclick = function() {
-	if (cardDeck) {
-		pauseGameTimer();
-	}
-	dealer.showFaq();
+	window.location.href = 'how-to-play.html';
 };
 
 document.addEventListener('touchstart', function(e) {

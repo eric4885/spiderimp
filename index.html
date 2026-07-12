@@ -46,6 +46,33 @@
 			"description": "Free online Spider Solitaire with 1, 2, or 4 suits, Daily Challenge, undo, hints, and local best scores. No download required."
 		}
 		</script>
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "HowTo",
+			"name": "How to play free Spider Solitaire online",
+			"description": "Clear eight same-suit King-to-Ace runs on a ten-column tableau at SpiderImp.",
+			"url": "https://spiderimp.com/how-to-play.html",
+			"image": "https://spiderimp.com/images/howto/step-layout.png",
+			"step": [
+				{
+					"@type": "HowToStep",
+					"name": "Choose difficulty",
+					"text": "Pick 1, 2, or 4 suits, then Play or Daily Challenge."
+				},
+				{
+					"@type": "HowToStep",
+					"name": "Build descending stacks",
+					"text": "Place cards on the next-higher rank. Move same-suit descending stacks as a group. Empty columns accept any card or valid run."
+				},
+				{
+					"@type": "HowToStep",
+					"name": "Deal and clear runs",
+					"text": "Deal only when every column has a card. Complete eight same-suit King-to-Ace sequences to win."
+				}
+			]
+		}
+		</script>
 
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -94,7 +121,10 @@
 
 			<h2 id="rules-setup">Setup</h2>
 			<p>
-				Spider uses two decks (104 cards) dealt into <strong>ten columns</strong>. The Deal pile sits at the <strong>top-left</strong>; completed runs collect at the <strong>top</strong> next to it. Choose difficulty before you play: 1 suit, 2 suits, or 4 suits.
+				Spider uses two decks (104 cards) dealt into <strong>ten columns</strong>. At the start, <strong>54 cards</strong> fill the tableau (some columns get six cards, others five); each column’s top card is face-up. The Deal pile sits at the <strong>top-left</strong>; completed runs collect at the <strong>top</strong> next to it. Choose difficulty before you play: 1 suit, 2 suits, or 4 suits.
+			</p>
+			<p>
+				When you move cards off a face-down card, it <strong>flips face-up automatically</strong>—exposing hidden cards early is a key tactic.
 			</p>
 
 			<h2 id="rules-moves">Valid moves</h2>
@@ -106,7 +136,7 @@
 
 			<h2 id="rules-deal">Dealing from the stock</h2>
 			<p>
-				When every column has at least one card, click the <strong>Deal</strong> pile (top-left) to deal one card onto each column. You cannot deal while any column is empty.
+				When every column has at least one card, click the <strong>Deal</strong> pile (top-left) to deal one card onto each column. You cannot deal while any column is empty—fill empties first. Empty columns are also why the rule exists: a deal would strand you with nowhere useful to park cards.
 			</p>
 
 			<h2 id="rules-scoring">Scoring on SpiderImp</h2>
@@ -117,16 +147,18 @@
 			<h2 id="rules-daily">Daily Challenge</h2>
 			<p>
 				Every calendar day, SpiderImp deals the <strong>same layout</strong> for each difficulty (1, 2, or 4 suits). Play from the menu with <strong>Daily Challenge</strong>, then try to beat your personal best for that day. Restart keeps today’s deal; tomorrow brings a new one. Great for comparing progress with friends using the same puzzle.
+				Full details: <a href="spider-solitaire-daily-challenge.html">Spider Solitaire Daily Challenge</a>.
 			</p>
 
 			<h2 id="rules-difficulty">Difficulty</h2>
 			<p>
 				<strong>1 suit</strong> is easiest for learning. <strong>2 suits</strong> fits daily play.
 				<strong>4 suits</strong> is the classic hard challenge with a full two-deck mix.
+				Compare modes: <a href="spider-solitaire-1-suit-2-suits-4-suits.html">1 suit vs 2 suits vs 4 suits</a>.
 			</p>
 
 			<p class="seo-shortcuts">
-				Shortcuts: <strong>Z</strong> Undo · <strong>H</strong> Hint · <strong>D</strong> / Space Deal · <strong>P</strong> Pause · <strong>Esc</strong> close panels
+				Shortcuts: <strong>Z</strong> Undo · <strong>H</strong> Hint · <strong>D</strong> / Space Deal · <strong>P</strong> Pause (also the top-bar <strong>Pause</strong> button) · <strong>Esc</strong> close panels
 			</p>
 			<ul class="seo-features">
 				<li>No download—works in Chrome, Edge, Firefox, and Safari</li>
@@ -135,9 +167,16 @@
 				<li>Click-to-move and drag for desktop and touch</li>
 				<li>Resume unfinished games after refresh</li>
 			</ul>
+			<nav class="seo-guides" aria-label="Guides">
+				<strong>Guides:</strong>
+				<a href="how-to-play.html">How to Play (illustrated)</a>
+				· <a href="spider-solitaire-daily-challenge.html">Daily Challenge</a>
+				· <a href="spider-solitaire-1-suit-2-suits-4-suits.html">Difficulty modes</a>
+				· <a href="privacy.html">Privacy</a>
+			</nav>
 			<p>
 				<a class="seo-back" href="#startGame">↑ Back to game</a>
-				· Need more detail? Open <strong>How to Play</strong> or in-game <strong>FAQ</strong>.
+				· Or open in-game <strong>FAQ</strong> from the control bar while playing.
 			</p>
 		</section>
 
@@ -311,7 +350,7 @@
 				<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
 					<div itemprop="text">
 						<p>
-							To play Spider Solitaire free on spiderimp.com: choose 1-suit, 2-suit, or 4-suit mode, then drag cards between columns. You may place a card on the next-higher rank (suit does not matter for placement). Only same-suit descending stacks move together as a group. Empty columns accept any card or valid stack. When no column is empty, click the Deal pile (top-left) to deal one card onto each of the ten columns. Completed King-to-Ace same-suit runs move automatically to the Completed area (top, beside the deal pile). Clear all eight runs to win.
+							To play Spider Solitaire free on spiderimp.com: choose 1-suit, 2-suit, or 4-suit mode, then drag cards between columns. You may place a card on the next-higher rank (suit does not matter for placement). Only same-suit descending stacks move together as a group. Empty columns accept any card or valid stack. Face-down cards flip face-up when uncovered. When no column is empty, click the Deal pile (top-left) to deal one card onto each of the ten columns. Completed King-to-Ace same-suit runs move automatically to the Completed area (top, beside the deal pile). Clear all eight runs to win. Illustrated steps: <a href="how-to-play.html">How to Play</a>.
 						</p>
 						<ol>
 							<li>Empty column: place any top card or valid same-suit run.</li>
@@ -353,7 +392,7 @@
 				<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
 					<div itemprop="text">
 						<p>
-							Yes. SpiderImp is available worldwide for English-speaking and international players. Many visitors search for free spider solitaire online in the United States (including New York, California, Texas, Florida), the United Kingdom (England, Scotland, Wales), Canada, Australia, New Zealand, Ireland, Singapore, India, and the Philippines. The game runs in the browser with no regional app lock—ideal for home, office, school breaks, or travel Wi‑Fi.
+							Yes. SpiderImp works worldwide in any modern browser—popular with players in the <strong>United States, United Kingdom, Canada, Australia</strong>, and elsewhere. There is no regional app lock; play at home, at work, or on travel Wi‑Fi wherever you have an internet connection.
 						</p>
 					</div>
 				</div>
@@ -419,7 +458,40 @@
 				<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
 					<div itemprop="text">
 						<p>
-							On desktop, drag cards with the mouse, or click a card then click a valid target column. Keyboard shortcuts: <strong>Z</strong> Undo, <strong>H</strong> Hint, <strong>D</strong> or <strong>Space</strong> Deal, <strong>P</strong> Pause, <strong>Esc</strong> close panels. On tablets and phones, tap to select then tap to move, or drag. Mute, Undo, Hint, Restart, Menu, and FAQ are in the on-screen controls. Moves, time, and progress appear in the top bar; the Deal pile is top-left and Completed runs collect beside it. Unfinished games can be resumed from the main menu. Best scores and statistics are stored locally in your browser by difficulty mode.
+							On desktop, drag cards with the mouse, or click a card then click a valid target column. Keyboard shortcuts: <strong>Z</strong> Undo, <strong>H</strong> Hint, <strong>D</strong> or <strong>Space</strong> Deal, <strong>P</strong> Pause (same as the top-bar Pause button), <strong>Esc</strong> close panels. On tablets and phones, tap to select then tap to move, or drag. Mute, Undo, Hint, Restart, Menu, and FAQ are in the on-screen controls. Moves, time, and progress appear in the top bar; the Deal pile is top-left and Completed runs collect beside it. Unfinished games can be resumed from the main menu. Best scores and statistics are stored locally in your browser by difficulty mode. For a longer illustrated walkthrough, see <a href="how-to-play.html">How to Play Spider Solitaire</a>.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+				<h2 itemprop="name">Why can’t I deal when a column is empty?</h2>
+				<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+					<div itemprop="text">
+						<p>
+							Classic Spider Solitaire requires every column to have at least one card before you deal from the stock. An empty column is a powerful parking spot for rearranging runs; dealing while a column is empty would flood the tableau and remove that option. Fill the empty column first, then click Deal.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+				<h2 itemprop="name">What does Hint do on SpiderImp?</h2>
+				<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+					<div itemprop="text">
+						<p>
+							<strong>Hint</strong> (button or <strong>H</strong>) highlights a useful legal move when one is available—helpful when you are stuck scanning ten columns. It does not solve the whole deal for you; use it as a nudge, then keep planning empty columns and same-suit builds yourself.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+				<h2 itemprop="name">Where are my scores and unfinished games stored? Can I play offline?</h2>
+				<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+					<div itemprop="text">
+						<p>
+							Best Scores, Statistics, Daily personal bests, volume settings, and resume state are stored <strong>locally in your browser</strong> (not on a SpiderImp account). Clearing site data for spiderimp.com removes them. You need a network connection to load the site the first time; after that, play still depends on the page being available in the browser—there is no separate offline app install. See our <a href="privacy.html">Privacy Policy</a> for details.
 						</p>
 					</div>
 				</div>
@@ -427,6 +499,9 @@
 
 			<p class="faq-footer-note">
 				Play free Spider Solitaire online at <strong>spiderimp.com</strong> — classic card game, no download, undo &amp; hints included.
+				Guides: <a href="how-to-play.html">How to Play</a> ·
+				<a href="spider-solitaire-daily-challenge.html">Daily</a> ·
+				<a href="spider-solitaire-1-suit-2-suits-4-suits.html">Difficulty</a>.
 			</p>
 			<div class="faq-close" title="Close" role="button" aria-label="Close"></div>
 		</div>
@@ -436,6 +511,10 @@
 			<span class="footer-brand">SpiderImp</span>
 			<span class="footer-sep">·</span>
 			<a href="https://spiderimp.com">spiderimp.com</a>
+			<span class="footer-sep">·</span>
+			<a href="how-to-play.html">How to Play</a>
+			<span class="footer-sep">·</span>
+			<a href="privacy.html">Privacy</a>
 		</footer>
 
 		<ul class="drag-el" id="drag-el"></ul>

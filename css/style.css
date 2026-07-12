@@ -1275,6 +1275,33 @@ ol#high-scores li:after {
 	color: #045c58;
 }
 
+.seo-guides {
+	margin: 14px 0 10px;
+	padding: 12px 14px;
+	background: rgba(7, 71, 68, 0.08);
+	border-radius: 8px;
+	font-size: 15px;
+}
+
+.seo-guides a {
+	color: #074744;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.seo-guides a:hover {
+	color: #045c58;
+}
+
+.faq a {
+	color: #074744;
+	font-weight: bold;
+}
+
+.faq a:hover {
+	color: #045c58;
+}
+
 body.playing .seo-content {
 	display: none !important;
 }
