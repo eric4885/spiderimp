@@ -11,3 +11,8 @@ Desktop.ini
 .env
 .env.*
 *.log
+
+# Node (screenshot tooling only)
+node_modules/
+package-lock.json
+package.json

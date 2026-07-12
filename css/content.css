@@ -174,13 +174,13 @@ body.content-page {
 	display: block;
 	width: 100%;
 	max-width: 640px;
+	height: auto;
 	margin: 0 auto;
 	border-radius: 10px;
 	border: 2px solid var(--felt-deep);
 	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-	background: #0a3d2e;
-	aspect-ratio: 16 / 10;
-	object-fit: cover;
+	background: #e8f0ea;
+	object-fit: contain;
 }
 
 .howto-figure figcaption {
@@ -258,14 +258,21 @@ body.content-page {
 
 .content-footer {
 	text-align: center;
-	padding: 0 16px 36px;
-	color: rgba(255, 255, 255, 0.65);
-	font-size: 0.85rem;
+	width: min(820px, calc(100% - 28px));
+	margin: 0 auto 36px;
+	padding: 14px 18px;
+	background: rgba(7, 71, 68, 0.92);
+	border: 2px solid rgba(201, 162, 74, 0.4);
+	border-radius: 14px;
+	color: rgba(255, 255, 255, 0.75);
+	font-size: 0.9rem;
+	line-height: 1.5;
 }
 
 .content-footer a {
 	color: rgba(246, 191, 91, 0.95);
 	text-decoration: none;
+	margin: 0 2px;
 }
 
 .content-footer a:hover {
