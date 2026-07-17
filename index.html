@@ -18,12 +18,15 @@
 		<meta property="og:url" content="https://spiderimp.com/">
 		<meta property="og:title" content="Spider Solitaire Free Online – Play Classic Card Game | SpiderImp">
 		<meta property="og:description" content="Free Spider Solitaire in your browser. Daily Challenge, 1–4 suits, undo &amp; hints. No download.">
-		<meta property="og:image" content="https://spiderimp.com/images/homescreen1.jpg">
+		<meta property="og:image" content="https://spiderimp.com/images/howto/guide-layout.png">
+		<meta property="og:image:width" content="1366">
+		<meta property="og:image:height" content="720">
+		<meta property="og:image:alt" content="SpiderImp Spider Solitaire game board with Deal pile and ten columns">
 
 		<meta name="twitter:card" content="summary_large_image">
 		<meta name="twitter:title" content="Free Spider Solitaire Online | SpiderImp">
 		<meta name="twitter:description" content="Play classic Spider Solitaire free – Daily Challenge, no download. 1, 2 or 4 suits.">
-		<meta name="twitter:image" content="https://spiderimp.com/images/homescreen1.jpg">
+		<meta name="twitter:image" content="https://spiderimp.com/images/howto/guide-layout.png">
 
 		<link rel="canonical" href="https://spiderimp.com/">
 		<link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -32,12 +35,15 @@
 		<script type="application/ld+json">
 		{
 			"@context": "https://schema.org",
-			"@type": "WebApplication",
-			"name": "SpiderImp – Free Spider Solitaire",
+			"@type": ["VideoGame", "WebApplication"],
+			"name": "SpiderImp - Free Spider Solitaire Online",
 			"url": "https://spiderimp.com/",
 			"applicationCategory": "GameApplication",
 			"operatingSystem": "Any",
 			"browserRequirements": "Requires JavaScript",
+			"playMode": "https://schema.org/SinglePlayer",
+			"genre": "Solitaire",
+			"image": "https://spiderimp.com/images/howto/guide-layout.png",
 			"offers": {
 				"@type": "Offer",
 				"price": "0",
@@ -259,6 +265,7 @@
 				<div class="victory-actions">
 					<button type="button" id="victory-again" class="victory-btn">Play Again</button>
 					<button type="button" id="victory-share" class="victory-btn">Copy Score</button>
+					<button type="button" id="victory-share-image" class="victory-btn">Share Image</button>
 					<button type="button" id="victory-menu" class="victory-btn victory-btn-secondary">Main Menu</button>
 				</div>
 			</div>

@@ -928,6 +928,10 @@ input[type=radio] {
 	flex-wrap: wrap;
 	gap: 10px;
 	justify-content: center;
+	max-width: 420px;
+	margin: 0 auto;
+}
+	justify-content: center;
 }
 
 .victory-btn {
