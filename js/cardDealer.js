@@ -196,21 +196,23 @@ function CardDealer() {
 
 	this.getLimitHeight = function() {
 		var panel = document.querySelector('.control-panel');
+		var pad = document.body.classList.contains('short-play') || document.body.classList.contains('landscape-play') ? 8 : 12;
 		if (panel && panel.style.display !== 'none') {
 			var top = panel.getBoundingClientRect().top;
-			if (isFinite(top) && top > 80) {
-				return top - 12;
+			if (isFinite(top) && top > 60) {
+				return top - pad;
 			}
 		}
-		return window.innerHeight - 72;
+		return window.innerHeight - (document.body.classList.contains('short-play') ? 48 : 72);
 	};
 
 	this.setSuitedHeight = function(el, maxHeight) {
 		el.dataset.height = '';
 		var c = 1;
+		var maxLevel = document.body.classList.contains('landscape-play') || document.body.classList.contains('short-play') ? 10 : 6;
 		while (el.getBoundingClientRect().bottom > maxHeight) {
 			el.dataset.height = c;
-			if (++c > 6) {
+			if (++c > maxLevel) {
 				break;
 			}
 		}

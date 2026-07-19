@@ -552,20 +552,97 @@ function scaleGameStage() {
 		vw = Math.min(vw, window.visualViewport.width);
 		vh = Math.min(vh, window.visualViewport.height);
 	}
-	var topChrome = vw < 720 ? 96 : 56;
-	var bottomChrome = 64;
-	// playfield design: stock row ~132 + tableau ~480
-	var scaleW = (vw - 16) / 1000;
-	var scaleH = (vh - topChrome - bottomChrome) / 620;
-	var scale = Math.min(scaleW, scaleH);
-	if (!isFinite(scale) || scale <= 0) {
-		scale = 1;
+
+	var landscape = vw >= vh;
+	var shortPlay = vh < 500;
+	var narrowPlay = vw < 720;
+
+	document.body.classList.toggle('landscape-play', landscape && shortPlay);
+	document.body.classList.toggle('short-play', shortPlay);
+	document.body.classList.toggle('narrow-play', narrowPlay);
+
+	var topbar = document.getElementById('game-topbar');
+	var panel = document.querySelector('.control-panel');
+	var topChrome;
+	var bottomChrome;
+
+	if (topbar && topbar.style.display !== 'none' && topbar.offsetHeight) {
+		topChrome = Math.ceil(topbar.getBoundingClientRect().bottom) + (shortPlay ? 2 : 6);
+	} else if (shortPlay) {
+		topChrome = 42;
+	} else if (narrowPlay) {
+		topChrome = 96;
+	} else {
+		topChrome = 56;
 	}
-	scale = Math.max(0.42, Math.min(1.15, scale));
-	var uiScale = Math.max(0.72, Math.min(1, scale));
+
+	if (panel && panel.style.display !== 'none' && panel.offsetHeight) {
+		var panelTop = panel.getBoundingClientRect().top;
+		bottomChrome = Math.max(36, Math.ceil(vh - panelTop) + 8);
+	} else {
+		bottomChrome = shortPlay ? 42 : 64;
+	}
+
+	// Design height: stock row + tableau. Shorter when landscape chrome is compact.
+	var designH = 620;
+	if (document.body.classList.contains('landscape-play')) {
+		designH = 500;
+	} else if (shortPlay) {
+		designH = 560;
+	}
+
+	var padX = narrowPlay ? 4 : 12;
+	var scaleW = (vw - padX * 2) / 1000;
+	var availH = Math.max(120, vh - topChrome - bottomChrome);
+	var scaleH = availH / designH;
+	var scale = Math.min(scaleW, scaleH, 1.15);
+	if (!isFinite(scale) || scale <= 0) {
+		scale = Math.max(0.28, scaleW);
+	}
+	// Never wider than the screen (old 0.42 floor clipped first/last columns on phones).
+	scale = Math.min(scale, scaleW);
+	scale = Math.max(0.28, Math.min(1.15, scale));
+
+	var uiScale = Math.max(0.6, Math.min(1, shortPlay ? Math.min(scale, 0.88) : scale));
 	document.documentElement.style.setProperty('--board-scale', String(scale));
 	document.documentElement.style.setProperty('--ui-scale', String(uiScale));
-	document.body.classList.toggle('compact-ui', scale < 0.92 || vw < 720);
+	document.documentElement.style.setProperty('--playfield-top', topChrome + 'px');
+	document.body.classList.toggle('compact-ui', scale < 0.92 || narrowPlay || shortPlay);
+
+	if (!scaleGameStage._raf) {
+		scaleGameStage._raf = window.requestAnimationFrame(function() {
+			scaleGameStage._raf = 0;
+			refineGameStageScale();
+			if (cardDeck && typeof applyColumnHeights === 'function') {
+				applyColumnHeights();
+			}
+		});
+	}
+}
+
+function refineGameStageScale() {
+	var topbar = document.getElementById('game-topbar');
+	var vh = window.innerHeight;
+	var vw = window.innerWidth;
+	if (window.visualViewport) {
+		vw = Math.min(vw, window.visualViewport.width);
+		vh = Math.min(vh, window.visualViewport.height);
+	}
+	if (topbar && topbar.style.display !== 'none' && topbar.offsetHeight) {
+		var topChrome = Math.ceil(topbar.getBoundingClientRect().bottom) + (vh < 500 ? 2 : 6);
+		document.documentElement.style.setProperty('--playfield-top', topChrome + 'px');
+	}
+	var playfield = document.getElementById('playfield');
+	if (!playfield || playfield.offsetParent === null) {
+		return;
+	}
+	var rect = playfield.getBoundingClientRect();
+	if (rect.width > vw - 2) {
+		var cur = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--board-scale')) || 1;
+		var next = cur * ((vw - 6) / rect.width);
+		next = Math.max(0.28, Math.min(1.15, next));
+		document.documentElement.style.setProperty('--board-scale', String(next));
+	}
 }
 
 if (window.visualViewport) {
@@ -576,6 +653,15 @@ if (window.visualViewport) {
 		}
 	});
 }
+
+window.addEventListener('orientationchange', function() {
+	window.setTimeout(function() {
+		scaleGameStage();
+		if (cardDeck && typeof applyColumnHeights === 'function') {
+			applyColumnHeights();
+		}
+	}, 120);
+});
 
 function renderStats(mode) {
 	var body = document.getElementById('stats-body');

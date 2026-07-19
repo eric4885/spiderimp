@@ -57,7 +57,7 @@ body.playing #game-stage {
 .playfield {
 	position: absolute;
 	left: 50%;
-	top: 52px;
+	top: var(--playfield-top, 52px);
 	width: 1000px;
 	transform: translateX(-50%) scale(var(--board-scale, 1));
 	transform-origin: top center;
@@ -678,9 +678,27 @@ input[type=radio] {
 	margin-top: -113px;
 }
 
+.column[data-height="7"] .open + .open {
+	margin-top: -114px;
+}
+
+.column[data-height="8"] .open + .open {
+	margin-top: -115px;
+}
+
+.column[data-height="9"] .open + .open,
+.column[data-height="10"] .open + .open {
+	margin-top: -116px;
+}
+
 /* Face-down backs: keep stacks compact */
 .column .closed {
 	margin-top: -113px;
+}
+
+body.landscape-play .column .closed,
+body.short-play .column .closed {
+	margin-top: -116px;
 }
 
 /* Transition from last back to first face-up: almost as tight as backs */
@@ -693,8 +711,17 @@ input[type=radio] {
 .column[data-height="3"] .closed + .open,
 .column[data-height="4"] .closed + .open,
 .column[data-height="5"] .closed + .open,
-.column[data-height="6"] .closed + .open {
+.column[data-height="6"] .closed + .open,
+.column[data-height="7"] .closed + .open,
+.column[data-height="8"] .closed + .open,
+.column[data-height="9"] .closed + .open,
+.column[data-height="10"] .closed + .open {
 	margin-top: -111px;
+}
+
+body.landscape-play .column .closed + .open,
+body.short-play .column .closed + .open {
+	margin-top: -114px;
 }
 
 .card.closed {
@@ -1562,11 +1589,11 @@ body.compact-ui .offside {
 }
 
 body.compact-ui .playfield {
-	top: 48px;
+	top: var(--playfield-top, 48px);
 }
 
 body.compact-ui .control-panel {
-	bottom: 4px;
+	bottom: max(4px, env(safe-area-inset-bottom, 0px));
 	padding: 8px 10px;
 }
 
@@ -1581,6 +1608,94 @@ body.compact-ui .site-footer {
 	font-size: 11px;
 	bottom: 52px;
 	opacity: 0.55;
+}
+
+/* Phone portrait / narrow: keep 10 columns + deal pile inside the screen */
+body.narrow-play .playfield {
+	top: var(--playfield-top, 92px);
+}
+
+/* Landscape / short height: reclaim vertical space so columns clear the bottom bar */
+body.landscape-play .game-topbar,
+body.short-play.landscape-play .game-topbar {
+	flex-direction: row !important;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: space-between;
+	padding: 3px 6px;
+	gap: 4px;
+	background: linear-gradient(180deg, rgba(0, 20, 14, 0.82), rgba(0, 20, 14, 0.15) 85%, transparent);
+}
+
+body.landscape-play .topbar-left,
+body.landscape-play .game-hud {
+	justify-content: flex-start;
+	flex-wrap: nowrap;
+	gap: 4px;
+}
+
+body.landscape-play .timer,
+body.landscape-play .score,
+body.landscape-play .btn-pause,
+body.landscape-play .mode-badge,
+body.landscape-play .progress-badges span {
+	font-size: 11px;
+	padding: 3px 7px;
+}
+
+body.landscape-play .volume-slider {
+	display: none;
+}
+
+body.landscape-play .sound-control {
+	padding: 0 2px;
+	gap: 0;
+}
+
+body.landscape-play .offside {
+	height: 98px;
+	margin-bottom: 0;
+}
+
+body.landscape-play .stock-label {
+	font-size: 10px;
+	top: 0;
+	left: 12px;
+}
+
+body.landscape-play .source {
+	top: 12px;
+	left: 12px;
+	transform: scale(0.68);
+	transform-origin: top left;
+}
+
+body.landscape-play .foundation-area {
+	top: 10px;
+	left: 118px;
+	transform: scale(0.68);
+	transform-origin: top left;
+}
+
+body.landscape-play .control-panel,
+body.short-play .control-panel {
+	bottom: max(2px, env(safe-area-inset-bottom, 0px));
+	padding: 4px 8px;
+	opacity: 0.88;
+}
+
+body.landscape-play .control-panel button,
+body.short-play .control-panel button {
+	width: 58px;
+	height: 28px;
+	font-size: 11px;
+	margin: 0;
+	outline-offset: -3px;
+}
+
+body.landscape-play .playfield,
+body.short-play .playfield {
+	top: var(--playfield-top, 40px);
 }
 
 @media (max-width: 720px) {
@@ -1611,7 +1726,19 @@ body.compact-ui .site-footer {
 	}
 
 	body.playing .playfield {
-		top: 92px;
+		top: var(--playfield-top, 92px);
+	}
+
+	/* Landscape phones are often wider than 720px; when not, still keep one-row chrome */
+	body.landscape-play .game-topbar {
+		flex-direction: row;
+		align-items: center;
+	}
+}
+
+@media (max-height: 500px) {
+	body.playing .site-footer {
+		display: none;
 	}
 }
 
