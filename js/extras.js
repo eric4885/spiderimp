@@ -554,10 +554,12 @@ function scaleGameStage() {
 	}
 
 	var landscape = vw >= vh;
-	var shortPlay = vh < 500;
+	var shortPlay = vh < 520;
 	var narrowPlay = vw < 720;
+	// Phone landscape: always use the compact chrome layout
+	var landscapePlay = landscape && (shortPlay || vw < 1100);
 
-	document.body.classList.toggle('landscape-play', landscape && shortPlay);
+	document.body.classList.toggle('landscape-play', landscapePlay);
 	document.body.classList.toggle('short-play', shortPlay);
 	document.body.classList.toggle('narrow-play', narrowPlay);
 
@@ -567,7 +569,9 @@ function scaleGameStage() {
 	var bottomChrome;
 
 	if (topbar && topbar.style.display !== 'none' && topbar.offsetHeight) {
-		topChrome = Math.ceil(topbar.getBoundingClientRect().bottom) + (shortPlay ? 2 : 6);
+		topChrome = Math.ceil(topbar.getBoundingClientRect().bottom) + (landscapePlay ? 1 : shortPlay ? 2 : 6);
+	} else if (landscapePlay) {
+		topChrome = 34;
 	} else if (shortPlay) {
 		topChrome = 42;
 	} else if (narrowPlay) {
@@ -578,15 +582,15 @@ function scaleGameStage() {
 
 	if (panel && panel.style.display !== 'none' && panel.offsetHeight) {
 		var panelTop = panel.getBoundingClientRect().top;
-		bottomChrome = Math.max(36, Math.ceil(vh - panelTop) + 8);
+		bottomChrome = Math.max(landscapePlay ? 28 : 36, Math.ceil(vh - panelTop) + (landscapePlay ? 4 : 8));
 	} else {
-		bottomChrome = shortPlay ? 42 : 64;
+		bottomChrome = landscapePlay ? 32 : shortPlay ? 42 : 64;
 	}
 
-	// Design height: stock row + tableau. Shorter when landscape chrome is compact.
+	// Design height: stock row + tableau. Landscape uses a much shorter stock strip.
 	var designH = 620;
-	if (document.body.classList.contains('landscape-play')) {
-		designH = 500;
+	if (landscapePlay) {
+		designH = 400;
 	} else if (shortPlay) {
 		designH = 560;
 	}
@@ -601,13 +605,17 @@ function scaleGameStage() {
 	}
 	// Never wider than the screen (old 0.42 floor clipped first/last columns on phones).
 	scale = Math.min(scale, scaleW);
+	// In landscape, prefer fitting height even if sides get a little empty space
+	if (landscapePlay) {
+		scale = Math.min(scale, scaleH);
+	}
 	scale = Math.max(0.28, Math.min(1.15, scale));
 
-	var uiScale = Math.max(0.6, Math.min(1, shortPlay ? Math.min(scale, 0.88) : scale));
+	var uiScale = Math.max(0.55, Math.min(1, landscapePlay ? Math.min(scale, 0.78) : shortPlay ? Math.min(scale, 0.88) : scale));
 	document.documentElement.style.setProperty('--board-scale', String(scale));
 	document.documentElement.style.setProperty('--ui-scale', String(uiScale));
 	document.documentElement.style.setProperty('--playfield-top', topChrome + 'px');
-	document.body.classList.toggle('compact-ui', scale < 0.92 || narrowPlay || shortPlay);
+	document.body.classList.toggle('compact-ui', scale < 0.92 || narrowPlay || shortPlay || landscapePlay);
 
 	if (!scaleGameStage._raf) {
 		scaleGameStage._raf = window.requestAnimationFrame(function() {
@@ -622,6 +630,7 @@ function scaleGameStage() {
 
 function refineGameStageScale() {
 	var topbar = document.getElementById('game-topbar');
+	var panel = document.querySelector('.control-panel');
 	var vh = window.innerHeight;
 	var vw = window.innerWidth;
 	if (window.visualViewport) {
@@ -629,7 +638,7 @@ function refineGameStageScale() {
 		vh = Math.min(vh, window.visualViewport.height);
 	}
 	if (topbar && topbar.style.display !== 'none' && topbar.offsetHeight) {
-		var topChrome = Math.ceil(topbar.getBoundingClientRect().bottom) + (vh < 500 ? 2 : 6);
+		var topChrome = Math.ceil(topbar.getBoundingClientRect().bottom) + (document.body.classList.contains('landscape-play') ? 1 : vh < 500 ? 2 : 6);
 		document.documentElement.style.setProperty('--playfield-top', topChrome + 'px');
 	}
 	var playfield = document.getElementById('playfield');
@@ -637,10 +646,24 @@ function refineGameStageScale() {
 		return;
 	}
 	var rect = playfield.getBoundingClientRect();
+	var cur = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--board-scale')) || 1;
+	var next = cur;
 	if (rect.width > vw - 2) {
-		var cur = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--board-scale')) || 1;
-		var next = cur * ((vw - 6) / rect.width);
-		next = Math.max(0.28, Math.min(1.15, next));
+		next = Math.min(next, cur * ((vw - 6) / rect.width));
+	}
+	// Keep tableau above the bottom control bar (critical in landscape)
+	if (panel && panel.style.display !== 'none' && panel.offsetHeight) {
+		var panelTop = panel.getBoundingClientRect().top;
+		var fieldTop = rect.top;
+		var fieldBottom = rect.bottom;
+		var avail = panelTop - fieldTop - 6;
+		var used = fieldBottom - fieldTop;
+		if (used > 0 && avail > 100 && fieldBottom > panelTop - 4) {
+			next = Math.min(next, cur * (avail / used));
+		}
+	}
+	next = Math.max(0.28, Math.min(1.15, next));
+	if (Math.abs(next - cur) > 0.005) {
 		document.documentElement.style.setProperty('--board-scale', String(next));
 	}
 }

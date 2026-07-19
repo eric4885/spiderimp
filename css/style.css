@@ -1622,7 +1622,7 @@ body.short-play.landscape-play .game-topbar {
 	flex-wrap: nowrap;
 	align-items: center;
 	justify-content: space-between;
-	padding: 3px 6px;
+	padding: 2px 6px;
 	gap: 4px;
 	background: linear-gradient(180deg, rgba(0, 20, 14, 0.82), rgba(0, 20, 14, 0.15) 85%, transparent);
 }
@@ -1636,11 +1636,14 @@ body.landscape-play .game-hud {
 
 body.landscape-play .timer,
 body.landscape-play .score,
-body.landscape-play .btn-pause,
+body.landscape-play .btn-pause {
+	font-size: 10px;
+	padding: 2px 6px;
+}
+
 body.landscape-play .mode-badge,
-body.landscape-play .progress-badges span {
-	font-size: 11px;
-	padding: 3px 7px;
+body.landscape-play .progress-badges {
+	display: none !important;
 }
 
 body.landscape-play .volume-slider {
@@ -1652,40 +1655,59 @@ body.landscape-play .sound-control {
 	gap: 0;
 }
 
+body.landscape-play .sound-toggle {
+	width: 24px;
+	height: 24px;
+	font-size: 13px;
+}
+
 body.landscape-play .offside {
-	height: 98px;
+	height: 72px;
 	margin-bottom: 0;
 }
 
 body.landscape-play .stock-label {
-	font-size: 10px;
+	font-size: 9px;
 	top: 0;
-	left: 12px;
+	left: 10px;
 }
 
 body.landscape-play .source {
-	top: 12px;
-	left: 12px;
-	transform: scale(0.68);
+	top: 10px;
+	left: 10px;
+	transform: scale(0.52);
 	transform-origin: top left;
 }
 
 body.landscape-play .foundation-area {
-	top: 10px;
-	left: 118px;
-	transform: scale(0.68);
+	top: 8px;
+	left: 100px;
+	transform: scale(0.52);
 	transform-origin: top left;
 }
 
-body.landscape-play .control-panel,
-body.short-play .control-panel {
+body.landscape-play .control-panel {
+	bottom: max(0px, env(safe-area-inset-bottom, 0px));
+	padding: 2px 6px 3px;
+	opacity: 0.92;
+	border-radius: 8px 8px 0 0;
+}
+
+body.short-play:not(.landscape-play) .control-panel {
 	bottom: max(2px, env(safe-area-inset-bottom, 0px));
 	padding: 4px 8px;
 	opacity: 0.88;
 }
 
-body.landscape-play .control-panel button,
-body.short-play .control-panel button {
+body.landscape-play .control-panel button {
+	width: 52px;
+	height: 24px;
+	font-size: 10px;
+	margin: 0;
+	outline-offset: -2px;
+}
+
+body.short-play:not(.landscape-play) .control-panel button {
 	width: 58px;
 	height: 28px;
 	font-size: 11px;
@@ -1695,7 +1717,7 @@ body.short-play .control-panel button {
 
 body.landscape-play .playfield,
 body.short-play .playfield {
-	top: var(--playfield-top, 40px);
+	top: var(--playfield-top, 36px);
 }
 
 @media (max-width: 720px) {
