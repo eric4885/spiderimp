@@ -279,11 +279,15 @@ function updateProgressUI() {
 function clearMoveHighlights() {
 	var cols = document.querySelectorAll('.column');
 	for (var i = 0; i < cols.length; i++) {
-		cols[i].classList.remove('drop-target');
+		cols[i].classList.remove('drop-target', 'drop-target-empty', 'drop-target-stack');
 	}
 	var selected = document.querySelectorAll('.card.card-selected');
 	for (var j = 0; j < selected.length; j++) {
 		selected[j].classList.remove('card-selected');
+	}
+	var landing = document.querySelectorAll('.card.drop-landing');
+	for (var k = 0; k < landing.length; k++) {
+		landing[k].classList.remove('drop-landing');
 	}
 }
 
@@ -322,7 +326,17 @@ function highlightValidDrops(cardEl) {
 	}
 	var valid = getValidDropColumns(cardEl);
 	for (var i = 0; i < valid.length; i++) {
-		valid[i].classList.add('drop-target');
+		var col = valid[i];
+		col.classList.add('drop-target');
+		if (!col.children[0]) {
+			col.classList.add('drop-target-empty');
+		} else {
+			col.classList.add('drop-target-stack');
+			var land = col.lastElementChild;
+			if (land) {
+				land.classList.add('drop-landing');
+			}
+		}
 	}
 	return valid;
 }

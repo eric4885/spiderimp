@@ -1444,10 +1444,50 @@ body.playing .seo-content {
 	z-index: 5;
 }
 
-.column.drop-target {
+/* Empty-column drop zone: card slot + taller dashed landing strip (~2 cards) */
+.column.drop-target-empty {
+	min-height: 300px;
+	outline: none;
+	background: transparent;
+}
+
+.column.drop-target-empty::before {
+	border-color: rgba(246, 191, 91, 0.95);
+	background: rgba(246, 191, 91, 0.28);
+	box-shadow: 0 0 0 1px rgba(246, 191, 91, 0.45);
+}
+
+.column.drop-target-empty::after {
+	content: "";
+	position: absolute;
+	left: 4px;
+	right: 4px;
+	top: 36px;
+	height: 248px;
+	border: 2px dashed rgba(246, 191, 91, 0.9);
+	border-radius: 10px;
+	background: linear-gradient(
+		180deg,
+		rgba(246, 191, 91, 0.22) 0%,
+		rgba(246, 191, 91, 0.1) 55%,
+		rgba(246, 191, 91, 0.04) 100%
+	);
+	pointer-events: none;
+	z-index: 0;
+	box-sizing: border-box;
+}
+
+/* Stacked column: highlight the receiving top card */
+.column.drop-target-stack {
+	outline: none;
+	background: transparent;
+}
+
+.card.drop-landing {
+	box-shadow: 0 0 0 3px rgba(246, 191, 91, 0.95), 0 0 12px rgba(246, 191, 91, 0.5);
 	outline: 2px dashed rgba(246, 191, 91, 0.85);
 	outline-offset: 2px;
-	background: rgba(246, 191, 91, 0.12);
+	z-index: 4;
 	border-radius: 6px;
 }
 
