@@ -1456,32 +1456,21 @@ body.playing .seo-content {
 	z-index: 5;
 }
 
-/* Empty-column drop zone: one card slot + short landing strip */
+/* Empty-column drop zone: same card-slot size as placeholder, light gold rim only */
 .column.drop-target-empty {
-	min-height: 180px;
+	min-height: 160px;
 	outline: none;
 	background: transparent;
 }
 
 .column.drop-target-empty::before {
-	border-color: rgba(246, 191, 91, 0.95);
-	background: rgba(246, 191, 91, 0.28);
-	box-shadow: 0 0 0 1px rgba(246, 191, 91, 0.45);
+	border: 2px solid rgba(246, 191, 91, 0.95);
+	background: transparent;
+	box-shadow: 0 0 0 2px rgba(246, 191, 91, 0.35), 0 0 12px rgba(246, 191, 91, 0.45);
 }
 
 .column.drop-target-empty::after {
-	content: "";
-	position: absolute;
-	left: 4px;
-	right: 4px;
-	top: 36px;
-	height: 140px; /* ~1 card + small padding */
-	border: 2px dashed rgba(246, 191, 91, 0.9);
-	border-radius: 10px;
-	background: rgba(246, 191, 91, 0.16);
-	pointer-events: none;
-	z-index: 0;
-	box-sizing: border-box;
+	content: none;
 }
 
 /* Stacked column: glow only on the receiving top card (no tall column frame) */
