@@ -1444,9 +1444,9 @@ body.playing .seo-content {
 	z-index: 5;
 }
 
-/* Empty-column drop zone: card slot + taller dashed landing strip (~2 cards) */
+/* Empty-column drop zone: one card slot + short landing strip */
 .column.drop-target-empty {
-	min-height: 300px;
+	min-height: 180px;
 	outline: none;
 	background: transparent;
 }
@@ -1463,30 +1463,24 @@ body.playing .seo-content {
 	left: 4px;
 	right: 4px;
 	top: 36px;
-	height: 248px;
+	height: 140px; /* ~1 card + small padding */
 	border: 2px dashed rgba(246, 191, 91, 0.9);
 	border-radius: 10px;
-	background: linear-gradient(
-		180deg,
-		rgba(246, 191, 91, 0.22) 0%,
-		rgba(246, 191, 91, 0.1) 55%,
-		rgba(246, 191, 91, 0.04) 100%
-	);
+	background: rgba(246, 191, 91, 0.16);
 	pointer-events: none;
 	z-index: 0;
 	box-sizing: border-box;
 }
 
-/* Stacked column: highlight the receiving top card */
+/* Stacked column: glow only on the receiving top card (no tall column frame) */
 .column.drop-target-stack {
 	outline: none;
 	background: transparent;
 }
 
 .card.drop-landing {
-	box-shadow: 0 0 0 3px rgba(246, 191, 91, 0.95), 0 0 12px rgba(246, 191, 91, 0.5);
-	outline: 2px dashed rgba(246, 191, 91, 0.85);
-	outline-offset: 2px;
+	box-shadow: 0 0 0 3px rgba(246, 191, 91, 0.95), 0 0 12px rgba(246, 191, 91, 0.55);
+	outline: none;
 	z-index: 4;
 	border-radius: 6px;
 }
