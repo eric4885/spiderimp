@@ -289,7 +289,9 @@ input[type=radio] {
 }
 
 .start-form .game-option {
-	display: block;
+	display: flex;
+	align-items: center;
+	gap: 8px;
 	margin: 0 0 4px 8px;
 	padding: 0 8px;
 	font-size: 18px;
@@ -300,6 +302,15 @@ input[type=radio] {
 	overflow: hidden;
 	white-space: nowrap;
 	box-sizing: border-box;
+}
+
+.start-form .game-option input[type="radio"] {
+	flex: 0 0 auto;
+	width: 18px;
+	height: 18px;
+	margin: 0;
+	cursor: pointer;
+	accent-color: #045c58;
 }
 
 .start-form .game-option:hover,
@@ -319,6 +330,7 @@ input[type=radio] {
 	background-size: 170px 68px;
 	height: 40px;
 	line-height: 40px;
+	cursor: pointer;
 }
 
 .start-form .suit.one {

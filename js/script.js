@@ -710,19 +710,24 @@ function bindDifficultyPicker() {
 	var form = document.forms.startGame;
 	var options = form.querySelectorAll('.game-option');
 	for (var i = 0; i < options.length; i++) {
-		options[i].addEventListener('click', function(e) {
-			var input = this.querySelector('input[type="radio"]');
-			if (!input) {
-				return;
-			}
-			setMenuDifficulty(input.value);
-			e.preventDefault();
-		});
+		(function(option) {
+			option.addEventListener('click', function(e) {
+				var input = option.querySelector('input[type="radio"]');
+				if (!input) {
+					return;
+				}
+				setMenuDifficulty(input.value);
+				// Clicking the radio: allow native check. Clicking text/icons: we already set mode.
+				if (e.target !== input) {
+					e.preventDefault();
+				}
+			});
+		})(options[i]);
 	}
 	var radios = form.radioBtn;
 	for (var r = 0; r < radios.length; r++) {
 		radios[r].addEventListener('change', function() {
-			menuDifficulty = this.value;
+			setMenuDifficulty(this.value);
 		});
 	}
 }
