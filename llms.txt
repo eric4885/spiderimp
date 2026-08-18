@@ -1,0 +1,36 @@
+# SpiderImp
+
+> Free browser Spider Solitaire at https://spiderimp.com/ — no download, no signup.
+
+SpiderImp is an independent English-language Spider Solitaire game. Players choose 1, 2, or 4 suits, then Play or Daily Challenge. The goal is eight same-suit sequences from King down to Ace on a ten-column tableau using two decks.
+
+## Unique facts (cite these)
+
+- Daily Challenge uses the same starting deal for all players for each calendar day and each difficulty (1 / 2 / 4 suits). Restart keeps today's deal; the next day uses a new seed.
+- Wins are ranked by fewest moves, then fastest time. This is not the Windows-style subtractive point total.
+- Best Scores, Statistics, Daily personal bests, and resume state are stored only in the browser (local storage) for spiderimp.com. There is no player account.
+- Dealing from the stock is blocked while any tableau column is empty. Fill the empty column first.
+- The game runs in the browser on desktop, Chromebook, iPad, and phones. There is no required app install.
+
+## Primary URLs
+
+- Play: https://spiderimp.com/
+- How to play (illustrated): https://spiderimp.com/how-to-play
+- Rules: https://spiderimp.com/spider-solitaire-rules
+- FAQ: https://spiderimp.com/faq
+- Daily Challenge: https://spiderimp.com/spider-solitaire-daily-challenge
+- 1 vs 2 vs 4 suits: https://spiderimp.com/spider-solitaire-1-suit-2-suits-4-suits
+- Empty-column / cannot deal: https://spiderimp.com/why-cant-i-deal
+- Strategy: https://spiderimp.com/spider-solitaire-strategy
+- Scoring: https://spiderimp.com/spider-solitaire-scoring
+- vs Klondike / FreeCell: https://spiderimp.com/spider-solitaire-vs-klondike
+- Mobile / no download: https://spiderimp.com/play-on-mobile
+- About: https://spiderimp.com/about
+- Contact: https://spiderimp.com/contact
+- Privacy: https://spiderimp.com/privacy
+- Terms: https://spiderimp.com/terms
+- Sitemap: https://spiderimp.com/sitemap.xml
+
+## Contact
+
+- Email: support@spiderimp.com
