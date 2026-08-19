@@ -502,7 +502,7 @@ function goToMainMenu(clearSave) {
 	hideGameChrome();
 	document.forms.startGame.style.display = 'block';
 	document.forms.startGame.classList.add('start-form-visible');
-	setMenuDifficulty(lastMode || '1');
+	setMenuDifficulty(lastMode || '2');
 	scoreBoard.style.display = 'none';
 	statsBoard.style.display = 'none';
 
@@ -554,100 +554,6 @@ function getShareText() {
 		' moves and ' + timeStr + '! Play free at https://spiderimp.com';
 }
 
-function buildShareCardBlob(callback) {
-	var w = 1200;
-	var h = 630;
-	var canvas = document.createElement('canvas');
-	canvas.width = w;
-	canvas.height = h;
-	var ctx = canvas.getContext('2d');
-	if (!ctx) {
-		callback(null);
-		return;
-	}
-
-	var g = ctx.createLinearGradient(0, 0, w, h);
-	g.addColorStop(0, '#145232');
-	g.addColorStop(0.45, '#1a5c3a');
-	g.addColorStop(1, '#0e3d2a');
-	ctx.fillStyle = g;
-	ctx.fillRect(0, 0, w, h);
-
-	ctx.fillStyle = 'rgba(255,255,255,0.06)';
-	for (var i = 0; i < 8; i++) {
-		ctx.beginPath();
-		ctx.arc(80 + i * 150, 80 + (i % 3) * 160, 90, 0, Math.PI * 2);
-		ctx.fill();
-	}
-
-	ctx.fillStyle = 'rgba(7, 71, 68, 0.88)';
-	roundRect(ctx, 70, 70, w - 140, h - 140, 28);
-	ctx.fill();
-	ctx.strokeStyle = '#f6bf5b';
-	ctx.lineWidth = 4;
-	roundRect(ctx, 70, 70, w - 140, h - 140, 28);
-	ctx.stroke();
-
-	var timeStr = timer ? timer.getTimeString() : '00:00';
-	var modeLabel = MODE_LABELS[currentMode] || currentMode;
-	var isDaily = gameSession && gameSession.type === 'daily';
-
-	ctx.fillStyle = '#f6bf5b';
-	ctx.font = 'bold 54px Georgia, serif';
-	ctx.textAlign = 'center';
-	ctx.fillText('SpiderImp', w / 2, 170);
-
-	ctx.fillStyle = '#ffffff';
-	ctx.font = '36px Georgia, serif';
-	ctx.fillText(isDaily ? 'Daily Challenge Cleared!' : 'Spider Solitaire Cleared!', w / 2, 240);
-
-	ctx.fillStyle = '#e8f0ea';
-	ctx.font = 'bold 64px Georgia, serif';
-	ctx.fillText(noOfMoves + ' moves  ·  ' + timeStr, w / 2, 340);
-
-	ctx.font = '32px Georgia, serif';
-	ctx.fillStyle = '#c9d9d2';
-	var sub = modeLabel + (isDaily ? '  ·  ' + DailyChallenge.formatShortDate(gameSession.date) : '');
-	ctx.fillText(sub, w / 2, 410);
-
-	ctx.fillStyle = '#f6bf5b';
-	ctx.font = '28px Georgia, serif';
-	ctx.fillText('Play free · no download · spiderimp.com', w / 2, 500);
-
-	if (canvas.toBlob) {
-		canvas.toBlob(function(blob) {
-			callback(blob, canvas);
-		}, 'image/png');
-	} else {
-		callback(null, canvas);
-	}
-}
-
-function roundRect(ctx, x, y, width, height, radius) {
-	var r = Math.min(radius, width / 2, height / 2);
-	ctx.beginPath();
-	ctx.moveTo(x + r, y);
-	ctx.arcTo(x + width, y, x + width, y + height, r);
-	ctx.arcTo(x + width, y + height, x, y + height, r);
-	ctx.arcTo(x, y + height, x, y, r);
-	ctx.arcTo(x, y, x + width, y, r);
-	ctx.closePath();
-}
-
-function downloadShareCard(canvas) {
-	try {
-		var a = document.createElement('a');
-		a.href = canvas.toDataURL('image/png');
-		a.download = 'spiderimp-score.png';
-		document.body.appendChild(a);
-		a.click();
-		document.body.removeChild(a);
-		dealer.showMessage('Saved!', window.innerWidth / 2 - 40, window.innerHeight / 2 - 20);
-	} catch (err) {
-		AppModal.alert('Could not save the image. Try Copy Score instead.');
-	}
-}
-
 function refreshResumeButton() {
 	var btn = document.getElementById('resume-btn');
 	if (!btn) {
@@ -687,12 +593,20 @@ function tryDealStock(e) {
 	checkDeadEndHint();
 }
 
-var menuDifficulty = '1';
+var menuDifficulty = '2';
+
+function getDifficultyFromUrl() {
+	var m = /[?&]suits=([124])(?:&|$)/.exec(window.location.search);
+	if (m) {
+		return m[1];
+	}
+	return null;
+}
 
 function setMenuDifficulty(mode) {
-	menuDifficulty = String(mode || '1');
+	menuDifficulty = String(mode || '2');
 	if (menuDifficulty !== '1' && menuDifficulty !== '2' && menuDifficulty !== '4') {
-		menuDifficulty = '1';
+		menuDifficulty = '2';
 	}
 	var radios = document.forms.startGame.radioBtn;
 	for (var i = 0; i < radios.length; i++) {
@@ -710,24 +624,19 @@ function bindDifficultyPicker() {
 	var form = document.forms.startGame;
 	var options = form.querySelectorAll('.game-option');
 	for (var i = 0; i < options.length; i++) {
-		(function(option) {
-			option.addEventListener('click', function(e) {
-				var input = option.querySelector('input[type="radio"]');
-				if (!input) {
-					return;
-				}
-				setMenuDifficulty(input.value);
-				// Clicking the radio: allow native check. Clicking text/icons: we already set mode.
-				if (e.target !== input) {
-					e.preventDefault();
-				}
-			});
-		})(options[i]);
+		options[i].addEventListener('click', function(e) {
+			var input = this.querySelector('input[type="radio"]');
+			if (!input) {
+				return;
+			}
+			setMenuDifficulty(input.value);
+			e.preventDefault();
+		});
 	}
 	var radios = form.radioBtn;
 	for (var r = 0; r < radios.length; r++) {
 		radios[r].addEventListener('change', function() {
-			setMenuDifficulty(this.value);
+			menuDifficulty = this.value;
 		});
 	}
 }
@@ -787,7 +696,7 @@ document.getElementById('daily-btn').onclick = function(e) {
 };
 
 bindDifficultyPicker();
-setMenuDifficulty('1');
+setMenuDifficulty(getDifficultyFromUrl() || '2');
 
 cardDeckEl.onclick = function(e) {
 	var t = e.target;
@@ -953,45 +862,6 @@ document.getElementById('victory-share').onclick = function() {
 	} else {
 		AppModal.alert(text);
 	}
-};
-
-document.getElementById('victory-share-image').onclick = function() {
-	var btn = document.getElementById('victory-share-image');
-	var text = getShareText();
-	buildShareCardBlob(function(blob, canvas) {
-		if (!blob && !canvas) {
-			AppModal.alert('Could not create share image.');
-			return;
-		}
-		function flashSaved() {
-			if (!btn) {
-				return;
-			}
-			var prev = btn.getAttribute('data-label') || btn.textContent;
-			btn.setAttribute('data-label', prev);
-			btn.textContent = 'Ready!';
-			btn.classList.add('copied');
-			setTimeout(function() {
-				btn.textContent = btn.getAttribute('data-label') || 'Share Image';
-				btn.classList.remove('copied');
-			}, 1800);
-		}
-		if (blob && navigator.canShare) {
-			var file = new File([blob], 'spiderimp-score.png', { type: 'image/png' });
-			var payload = { files: [file], title: 'SpiderImp', text: text };
-			if (navigator.canShare(payload)) {
-				navigator.share(payload).then(flashSaved).catch(function() {
-					downloadShareCard(canvas);
-					flashSaved();
-				});
-				return;
-			}
-		}
-		if (canvas) {
-			downloadShareCard(canvas);
-			flashSaved();
-		}
-	});
 };
 
 soundToggle.onclick = function() {
