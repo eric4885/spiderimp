@@ -289,17 +289,57 @@ input[type=radio] {
 }
 
 .start-form .game-option {
-	display: block;
+	display: flex;
+	align-items: center;
+	gap: 10px;
 	margin: 0 0 4px 8px;
-	padding: 0 8px;
+	padding: 0 12px 0 8px;
 	font-size: 18px;
 	height: 40px;
 	line-height: 40px;
 	cursor: pointer;
 	border-radius: 6px;
 	overflow: hidden;
-	white-space: nowrap;
 	box-sizing: border-box;
+}
+
+.start-form .game-option input[type="radio"] {
+	flex: 0 0 auto;
+	margin-right: 0;
+}
+
+.start-form .suit-label {
+	flex: 0 1 auto;
+	min-width: 0;
+	white-space: nowrap;
+}
+
+.start-form .suit-label small {
+	font-size: 0.82em;
+	font-weight: normal;
+	opacity: 0.88;
+}
+
+.start-form .suit-icons {
+	flex: 0 0 auto;
+	margin-left: auto;
+	height: 40px;
+	background-image: url('../images/card-shapes.png');
+	background-repeat: no-repeat;
+	background-position: 0 50%;
+	background-size: 170px 68px;
+}
+
+.start-form .suit-icons.one {
+	width: 42px;
+}
+
+.start-form .suit-icons.two {
+	width: 85px;
+}
+
+.start-form .suit-icons.four {
+	width: 170px;
 }
 
 .start-form .game-option:hover,
@@ -309,61 +349,19 @@ input[type=radio] {
 	color: #e7e7e7;
 }
 
-/* Sprite clipped by width: 1 / 2 / 4 suit icons (position clears longer labels) */
-.start-form .suit {
-	display: inline-block;
-	vertical-align: middle;
-	background-image: url('../images/card-shapes.png');
-	background-repeat: no-repeat;
-	background-size: 170px 68px;
-	height: 40px;
-	line-height: 40px;
-}
-
-.start-form .suit small {
-	font-size: 0.82em;
-	font-weight: normal;
-	opacity: 0.88;
-}
-
-.start-form .suit.one {
-	width: 250px;
-	background-position: 198px 50%;
-}
-
-.start-form .suit.two {
-	width: 310px;
-	background-position: 252px 50%;
-}
-
-.start-form .suit.four {
-	width: 285px;
-	background-position: 222px 50%;
-}
-
-.start-form .game-option:hover .suit,
-.start-form .game-option.selected .suit {
+.start-form .game-option:hover .suit-icons,
+.start-form .game-option.selected .suit-icons {
 	filter: brightness(1.35);
 }
 
 @media (max-width: 520px) {
-	.start-form .suit small {
+	.start-form .suit-label small {
 		display: none;
 	}
 
-	.start-form .suit.one {
-		width: 200px;
-		background-position: 150px 50%;
-	}
-
-	.start-form .suit.two {
-		width: 235px;
-		background-position: 150px 50%;
-	}
-
-	.start-form .suit.four {
-		width: 320px;
-		background-position: 150px 50%;
+	.start-form .suit-icons.four {
+		width: 136px;
+		background-size: 136px 54px;
 	}
 }
 
