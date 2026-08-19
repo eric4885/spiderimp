@@ -289,58 +289,17 @@ input[type=radio] {
 }
 
 .start-form .game-option {
-	display: flex;
-	align-items: center;
-	gap: 8px;
+	display: block;
 	margin: 0 0 4px 8px;
-	padding: 0 10px;
+	padding: 0 8px;
 	font-size: 18px;
 	height: 40px;
 	line-height: 40px;
 	cursor: pointer;
 	border-radius: 6px;
 	overflow: hidden;
-	box-sizing: border-box;
-}
-
-.start-form .game-option input[type="radio"] {
-	flex-shrink: 0;
-	margin-right: 0;
-}
-
-.start-form .suit-label {
-	flex: 1 1 auto;
-	min-width: 0;
 	white-space: nowrap;
-}
-
-.start-form .suit-label small {
-	font-size: 0.82em;
-	font-weight: normal;
-	opacity: 0.88;
-}
-
-.start-form .suit-icons {
-	flex-shrink: 0;
-	display: inline-block;
-	vertical-align: middle;
-	background-image: url('../images/card-shapes.png');
-	background-repeat: no-repeat;
-	background-position: 0 50%;
-	background-size: 170px 68px;
-	height: 40px;
-}
-
-.start-form .suit-icons.one {
-	width: 42px;
-}
-
-.start-form .suit-icons.two {
-	width: 85px;
-}
-
-.start-form .suit-icons.four {
-	width: 170px;
+	box-sizing: border-box;
 }
 
 .start-form .game-option:hover,
@@ -348,6 +307,43 @@ input[type=radio] {
 .start-form .game-option.selected {
 	background: #045c58;
 	color: #e7e7e7;
+}
+
+/* Sprite clipped by width: 1 / 2 / 4 suit icons (position clears longer labels) */
+.start-form .suit {
+	display: inline-block;
+	vertical-align: middle;
+	background-image: url('../images/card-shapes.png');
+	background-repeat: no-repeat;
+	background-size: 170px 68px;
+	height: 40px;
+	line-height: 40px;
+}
+
+.start-form .suit small {
+	font-size: 0.82em;
+	font-weight: normal;
+	opacity: 0.88;
+}
+
+.start-form .suit.one {
+	width: 250px;
+	background-position: 198px 50%;
+}
+
+.start-form .suit.two {
+	width: 310px;
+	background-position: 252px 50%;
+}
+
+.start-form .suit.four {
+	width: 285px;
+	background-position: 222px 50%;
+}
+
+.start-form .game-option:hover .suit,
+.start-form .game-option.selected .suit {
+	filter: brightness(1.35);
 }
 
 .game-topbar {
