@@ -346,6 +346,27 @@ input[type=radio] {
 	filter: brightness(1.35);
 }
 
+@media (max-width: 520px) {
+	.start-form .suit small {
+		display: none;
+	}
+
+	.start-form .suit.one {
+		width: 200px;
+		background-position: 150px 50%;
+	}
+
+	.start-form .suit.two {
+		width: 235px;
+		background-position: 150px 50%;
+	}
+
+	.start-form .suit.four {
+		width: 320px;
+		background-position: 150px 50%;
+	}
+}
+
 .game-topbar {
 	position: fixed;
 	top: 0;
