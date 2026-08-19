@@ -57,7 +57,7 @@ body.playing #game-stage {
 .playfield {
 	position: absolute;
 	left: 50%;
-	top: var(--playfield-top, 52px);
+	top: 52px;
 	width: 1000px;
 	transform: translateX(-50%) scale(var(--board-scale, 1));
 	transform-origin: top center;
@@ -293,24 +293,54 @@ input[type=radio] {
 	align-items: center;
 	gap: 8px;
 	margin: 0 0 4px 8px;
-	padding: 0 8px;
+	padding: 0 10px;
 	font-size: 18px;
 	height: 40px;
 	line-height: 40px;
 	cursor: pointer;
 	border-radius: 6px;
 	overflow: hidden;
-	white-space: nowrap;
 	box-sizing: border-box;
 }
 
 .start-form .game-option input[type="radio"] {
-	flex: 0 0 auto;
-	width: 18px;
-	height: 18px;
-	margin: 0;
-	cursor: pointer;
-	accent-color: #045c58;
+	flex-shrink: 0;
+	margin-right: 0;
+}
+
+.start-form .suit-label {
+	flex: 1 1 auto;
+	min-width: 0;
+	white-space: nowrap;
+}
+
+.start-form .suit-label small {
+	font-size: 0.82em;
+	font-weight: normal;
+	opacity: 0.88;
+}
+
+.start-form .suit-icons {
+	flex-shrink: 0;
+	display: inline-block;
+	vertical-align: middle;
+	background-image: url('../images/card-shapes.png');
+	background-repeat: no-repeat;
+	background-position: 0 50%;
+	background-size: 170px 68px;
+	height: 40px;
+}
+
+.start-form .suit-icons.one {
+	width: 42px;
+}
+
+.start-form .suit-icons.two {
+	width: 85px;
+}
+
+.start-form .suit-icons.four {
+	width: 170px;
 }
 
 .start-form .game-option:hover,
@@ -318,31 +348,6 @@ input[type=radio] {
 .start-form .game-option.selected {
 	background: #045c58;
 	color: #e7e7e7;
-}
-
-/* Sprite clipped by width: 1 / 2 / 4 suit icons */
-.start-form .suit {
-	display: inline-block;
-	vertical-align: middle;
-	background-image: url('../images/card-shapes.png');
-	background-repeat: no-repeat;
-	background-position: 150px 50%;
-	background-size: 170px 68px;
-	height: 40px;
-	line-height: 40px;
-	cursor: pointer;
-}
-
-.start-form .suit.one {
-	width: 200px;
-}
-
-.start-form .suit.two {
-	width: 235px;
-}
-
-.start-form .suit.four {
-	width: 320px;
 }
 
 .game-topbar {
@@ -678,27 +683,9 @@ input[type=radio] {
 	margin-top: -113px;
 }
 
-.column[data-height="7"] .open + .open {
-	margin-top: -114px;
-}
-
-.column[data-height="8"] .open + .open {
-	margin-top: -115px;
-}
-
-.column[data-height="9"] .open + .open,
-.column[data-height="10"] .open + .open {
-	margin-top: -116px;
-}
-
 /* Face-down backs: keep stacks compact */
 .column .closed {
 	margin-top: -113px;
-}
-
-body.landscape-play .column .closed,
-body.short-play .column .closed {
-	margin-top: -116px;
 }
 
 /* Transition from last back to first face-up: almost as tight as backs */
@@ -711,17 +698,8 @@ body.short-play .column .closed {
 .column[data-height="3"] .closed + .open,
 .column[data-height="4"] .closed + .open,
 .column[data-height="5"] .closed + .open,
-.column[data-height="6"] .closed + .open,
-.column[data-height="7"] .closed + .open,
-.column[data-height="8"] .closed + .open,
-.column[data-height="9"] .closed + .open,
-.column[data-height="10"] .closed + .open {
+.column[data-height="6"] .closed + .open {
 	margin-top: -111px;
-}
-
-body.landscape-play .column .closed + .open,
-body.short-play .column .closed + .open {
-	margin-top: -114px;
 }
 
 .card.closed {
@@ -967,8 +945,6 @@ body.short-play .column .closed + .open {
 	flex-wrap: wrap;
 	gap: 10px;
 	justify-content: center;
-	max-width: 420px;
-	margin: 0 auto;
 }
 
 .victory-btn {
@@ -1483,33 +1459,10 @@ body.playing .seo-content {
 	z-index: 5;
 }
 
-/* Empty-column drop zone: same card-slot size as placeholder, light gold rim only */
-.column.drop-target-empty {
-	min-height: 160px;
-	outline: none;
-	background: transparent;
-}
-
-.column.drop-target-empty::before {
-	border: 2px solid rgba(246, 191, 91, 0.95);
-	background: transparent;
-	box-shadow: 0 0 0 2px rgba(246, 191, 91, 0.35), 0 0 12px rgba(246, 191, 91, 0.45);
-}
-
-.column.drop-target-empty::after {
-	content: none;
-}
-
-/* Stacked column: glow only on the receiving top card (no tall column frame) */
-.column.drop-target-stack {
-	outline: none;
-	background: transparent;
-}
-
-.card.drop-landing {
-	box-shadow: 0 0 0 3px rgba(246, 191, 91, 0.95), 0 0 12px rgba(246, 191, 91, 0.55);
-	outline: none;
-	z-index: 4;
+.column.drop-target {
+	outline: 2px dashed rgba(246, 191, 91, 0.85);
+	outline-offset: 2px;
+	background: rgba(246, 191, 91, 0.12);
 	border-radius: 6px;
 }
 
@@ -1589,11 +1542,11 @@ body.compact-ui .offside {
 }
 
 body.compact-ui .playfield {
-	top: var(--playfield-top, 48px);
+	top: 48px;
 }
 
 body.compact-ui .control-panel {
-	bottom: max(4px, env(safe-area-inset-bottom, 0px));
+	bottom: 4px;
 	padding: 8px 10px;
 }
 
@@ -1608,116 +1561,6 @@ body.compact-ui .site-footer {
 	font-size: 11px;
 	bottom: 52px;
 	opacity: 0.55;
-}
-
-/* Phone portrait / narrow: keep 10 columns + deal pile inside the screen */
-body.narrow-play .playfield {
-	top: var(--playfield-top, 92px);
-}
-
-/* Landscape / short height: reclaim vertical space so columns clear the bottom bar */
-body.landscape-play .game-topbar,
-body.short-play.landscape-play .game-topbar {
-	flex-direction: row !important;
-	flex-wrap: nowrap;
-	align-items: center;
-	justify-content: space-between;
-	padding: 2px 6px;
-	gap: 4px;
-	background: linear-gradient(180deg, rgba(0, 20, 14, 0.82), rgba(0, 20, 14, 0.15) 85%, transparent);
-}
-
-body.landscape-play .topbar-left,
-body.landscape-play .game-hud {
-	justify-content: flex-start;
-	flex-wrap: nowrap;
-	gap: 4px;
-}
-
-body.landscape-play .timer,
-body.landscape-play .score,
-body.landscape-play .btn-pause {
-	font-size: 10px;
-	padding: 2px 6px;
-}
-
-body.landscape-play .mode-badge,
-body.landscape-play .progress-badges {
-	display: none !important;
-}
-
-body.landscape-play .volume-slider {
-	display: none;
-}
-
-body.landscape-play .sound-control {
-	padding: 0 2px;
-	gap: 0;
-}
-
-body.landscape-play .sound-toggle {
-	width: 24px;
-	height: 24px;
-	font-size: 13px;
-}
-
-body.landscape-play .offside {
-	height: 72px;
-	margin-bottom: 0;
-}
-
-body.landscape-play .stock-label {
-	font-size: 9px;
-	top: 0;
-	left: 10px;
-}
-
-body.landscape-play .source {
-	top: 10px;
-	left: 10px;
-	transform: scale(0.52);
-	transform-origin: top left;
-}
-
-body.landscape-play .foundation-area {
-	top: 8px;
-	left: 100px;
-	transform: scale(0.52);
-	transform-origin: top left;
-}
-
-body.landscape-play .control-panel {
-	bottom: max(0px, env(safe-area-inset-bottom, 0px));
-	padding: 2px 6px 3px;
-	opacity: 0.92;
-	border-radius: 8px 8px 0 0;
-}
-
-body.short-play:not(.landscape-play) .control-panel {
-	bottom: max(2px, env(safe-area-inset-bottom, 0px));
-	padding: 4px 8px;
-	opacity: 0.88;
-}
-
-body.landscape-play .control-panel button {
-	width: 52px;
-	height: 24px;
-	font-size: 10px;
-	margin: 0;
-	outline-offset: -2px;
-}
-
-body.short-play:not(.landscape-play) .control-panel button {
-	width: 58px;
-	height: 28px;
-	font-size: 11px;
-	margin: 0;
-	outline-offset: -3px;
-}
-
-body.landscape-play .playfield,
-body.short-play .playfield {
-	top: var(--playfield-top, 36px);
 }
 
 @media (max-width: 720px) {
@@ -1748,19 +1591,7 @@ body.short-play .playfield {
 	}
 
 	body.playing .playfield {
-		top: var(--playfield-top, 92px);
-	}
-
-	/* Landscape phones are often wider than 720px; when not, still keep one-row chrome */
-	body.landscape-play .game-topbar {
-		flex-direction: row;
-		align-items: center;
-	}
-}
-
-@media (max-height: 500px) {
-	body.playing .site-footer {
-		display: none;
+		top: 92px;
 	}
 }
 
