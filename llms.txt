@@ -32,7 +32,7 @@ SpiderImp is an independent English-language Spider Solitaire game. **2 suits is
 - Scoring: https://spiderimp.com/spider-solitaire-scoring
 - Undo & hints: https://spiderimp.com/spider-solitaire-undo-hints
 - vs Klondike / FreeCell: https://spiderimp.com/spider-solitaire-vs-klondike
-- Windows Spider Solitaire: https://spiderimp.com/windows-spider-solitaire
+- Windows Spider / get Spider back: https://spiderimp.com/windows-spider-solitaire
 - Mobile / no download: https://spiderimp.com/play-on-mobile
 - Easy mode for seniors: https://spiderimp.com/spider-solitaire-for-seniors
 - About: https://spiderimp.com/about
