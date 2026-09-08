@@ -31,14 +31,14 @@ Arrange same-suit cards from King to Ace. Completed sequences move to the Comple
 
 ## Screenshots
 
-Game Start  
-![UI](screenshots/Screenshot1.png)
+Main menu (2 suits recommended)  
+![Main menu](screenshots/Screenshot1.png)
 
-Mid game  
-![UI](screenshots/Screenshot2.png)
+Gameplay  
+![Gameplay](screenshots/Screenshot2.png)
 
-Game Over  
-![UI](screenshots/Screenshot3.png)
+Building runs (hint highlight)  
+![Building runs](screenshots/Screenshot3.png)
 
 ## Links
 
